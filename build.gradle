@@ -19,6 +19,7 @@ repositories {
 apply plugin: 'java'
 apply plugin: 'war'
 apply plugin: 'appengine'
+apply plugin: 'eclipse'
 
 wrapper {
 	gradleVersion = '4.10'
@@ -60,7 +61,7 @@ dependencies {
 
 test {
     filter {
-        includeTestsMatching "org.wahlzeit.*"
+        includeTestsMatching "org.wahlzeit.AllTests"
     }
     testLogging {
             events "passed", "skipped", "failed"
