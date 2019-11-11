@@ -12,8 +12,7 @@ import org.junit.runners.Suite.SuiteClasses;
 	PhotoFilterTest.class,
 	TagsTest.class, 
 	UserStatusTest.class, 
-	ValueTest.class,
-	MountainPhotoTest.class
+	ValueTest.class
 	})
 public class ModelTestSuite {
 
