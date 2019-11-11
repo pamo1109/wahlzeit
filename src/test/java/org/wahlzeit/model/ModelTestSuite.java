@@ -5,8 +5,16 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ AccessRightsTest.class, FlagReasonTest.class, GenderTest.class, PhotoFilterTest.class,
-		TagsTest.class, UserStatusTest.class, ValueTest.class })
+@SuiteClasses({ 
+	AccessRightsTest.class, 
+	FlagReasonTest.class,
+	GenderTest.class, 
+	PhotoFilterTest.class,
+	TagsTest.class, 
+	UserStatusTest.class, 
+	ValueTest.class,
+	MountainPhotoTest.class
+	})
 public class ModelTestSuite {
 
 }
