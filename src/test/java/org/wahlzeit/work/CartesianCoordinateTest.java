@@ -3,18 +3,18 @@
  */
 package org.wahlzeit.work;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Test;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author patrickmoritz
  *
  */
-class CartesianCoordinateTest {
+public class CartesianCoordinateTest {
 
 	@Test
-	void testEqualityCheck() {
+	public void testEqualityCheck() {
 		CartesianCoordinate testObject1 = new CartesianCoordinate(1, 2, 3);
 		CartesianCoordinate testObject2 = new CartesianCoordinate(1, 2, 3);
 		

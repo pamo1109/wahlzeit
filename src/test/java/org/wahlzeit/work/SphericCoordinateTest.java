@@ -3,18 +3,18 @@
  */
 package org.wahlzeit.work;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Test;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author patrickmoritz
  *
  */
-class SphericCoordinateTest {
+public class SphericCoordinateTest {
 
 	@Test
-	void testEqualityCheck() {
+	public void testEqualityCheck() {
 		SphericCoordinate sc1 = new SphericCoordinate(1, 0.5, 0.5);
 		SphericCoordinate sc2 = new SphericCoordinate(1, 0.5, 0.5);
 		
@@ -26,7 +26,7 @@ class SphericCoordinateTest {
 	}
 	
 	@Test
-	void testCartesianDistance() {
+	public void testCartesianDistance() {
 		SphericCoordinate sc1 = new SphericCoordinate(1, 0.5, 0.5);
 		SphericCoordinate sc2 = new SphericCoordinate(1, 0.5, 0.5);
 		
