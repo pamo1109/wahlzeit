@@ -7,7 +7,7 @@ package org.wahlzeit.work;
  * @author patrickmoritz
  *
  */
-public class SphericCoordinate implements Coordinate {
+public class SphericCoordinate extends AbstractCoordinate {
 
 	double phi;
 	double theta;
@@ -17,6 +17,7 @@ public class SphericCoordinate implements Coordinate {
 	 * 
 	 */
 	public SphericCoordinate(double rad, double theta, double phi) {
+		super();
 		this.radius = rad;
 		this.theta = theta;
 		this.phi = phi;
@@ -28,33 +29,16 @@ public class SphericCoordinate implements Coordinate {
 	}
 
 	@Override
-	public double getCartesianDistance(Coordinate other) {
-		CartesianCoordinate asCartesian = this.asCartesianCoordinates();
-		CartesianCoordinate cc = other.asCartesianCoordinates();
-		double cartesianDistance = asCartesian.getCartesianDistance(cc);
-	
-		return cartesianDistance;
-	}
-
-	@Override
 	public SphericCoordinate asSphericCoordinate() {
 		return this;
 	}
 
 	@Override
-	public double getCentralAngle(Coordinate other) {
-		SphericCoordinate sc = other.asSphericCoordinate();
-		return this.doComputeCentralAngle(sc);
-	}
-
-	@Override
 	public boolean isEqual(Coordinate other) {
 		if	(this == other) return true;
-		if	(!(other instanceof SphericCoordinate)) return false;
 		
 		SphericCoordinate sc = other.asSphericCoordinate();
-		if (this.radius == sc.radius && this.phi == sc.phi && this.theta == sc.theta) return true;
-		
+		if (Math.abs(this.radius - sc.radius) < EPSILON && Math.abs(this.phi - sc.phi) < EPSILON && Math.abs(this.theta - sc.theta) < EPSILON) return true;
 		return false;
 	}
 	
@@ -68,13 +52,4 @@ public class SphericCoordinate implements Coordinate {
 		
 		return new CartesianCoordinate(x, y, z);
 	}
-	
-	private double doComputeCentralAngle(SphericCoordinate other) {
-		
-		double deltaPhi = Math.abs(this.phi - other.phi);
-		return Math.acos(Math.sin(this.theta) * Math.sin(other.theta) 
-				+ Math.cos(this.theta) * Math.cos(other.theta) * Math.cos(deltaPhi)
-				);
-	}
-
 }
