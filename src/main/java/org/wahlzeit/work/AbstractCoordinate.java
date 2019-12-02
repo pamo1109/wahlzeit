@@ -27,14 +27,28 @@ public abstract class AbstractCoordinate implements Coordinate {
 	 */
 	@Override
 	public double getCartesianDistance(Coordinate other) {
+		assertCoordinateIsDefined(other);
 		CartesianCoordinate otherAsCartesian = other.asCartesianCoordinates();
-		return this.doComputeCartesianDistance(otherAsCartesian);
+		double result = this.doComputeCartesianDistance(otherAsCartesian);
+		assertGreaterZero(result);
+		return result;
 	}
 
 	@Override
 	public double getCentralAngle(Coordinate other) {
+		assertCoordinateIsDefined(other);
 		SphericCoordinate otherAsSpheric = other.asSphericCoordinate();
-		return this.doComputeCentralAngle(otherAsSpheric);
+		double result = this.doComputeCentralAngle(otherAsSpheric);
+		assertGreaterZero(result);
+		return result;
+	}
+	
+	protected void assertGreaterZero(double value) throws IllegalStateException {
+		if (value < 0) throw new IllegalStateException();
+	}
+	
+	protected void assertCoordinateIsDefined(Coordinate coord) throws NullPointerException {
+		if (coord == null) throw new NullPointerException();
 	}
 	
 	/*

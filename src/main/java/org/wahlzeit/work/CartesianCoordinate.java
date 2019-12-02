@@ -11,20 +11,24 @@ public class CartesianCoordinate extends AbstractCoordinate {
 		this.x = x;
 		this.y = y;
 		this.z = z;
+		assertCoordinatesAreValid();
 	}
 
 	@Override
 	public CartesianCoordinate asCartesianCoordinates() {
+		assertCoordinatesAreValid();
 		return this;
 	}
 
 	@Override
 	public SphericCoordinate asSphericCoordinate() {
+		assertCoordinatesAreValid();
 		return this.doTransformToSphericCoordinate();
 	}
 
 	@Override
 	public boolean isEqual(Coordinate other) {
+		assertCoordinatesAreValid();
 		if	(this == other) return true;
 		
 		CartesianCoordinate cc = other.asCartesianCoordinates();
@@ -42,5 +46,13 @@ public class CartesianCoordinate extends AbstractCoordinate {
 		double phi = Math.atan2(y, x);
 		
 		return new SphericCoordinate(rad, theta, phi);
+	}
+	
+	/*
+	 *  assertions
+	 */
+	private void assertCoordinatesAreValid() throws IllegalStateException {
+		if (!Double.isFinite(this.x) || !Double.isFinite(this.y) || !Double.isFinite(this.z)) 
+			throw new IllegalStateException();
 	}
 }
