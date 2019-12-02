@@ -44,5 +44,15 @@ public class CartesianCoordinateTest {
 		assertTrue(testObject1.getCentralAngle(testObject2) == 0);
 		assertTrue(testObject1.getCentralAngle(testObject3) != 0);
 	}
+	
+	@Test(expected = IllegalStateException.class)
+	public void testConstructorWithNaN() {
+		CartesianCoordinate coord = new CartesianCoordinate(Double.NaN, 0, 0);
+	}
+	
+	@Test(expected = IllegalStateException.class)
+	public void testConstructorWithInfinite() {
+		CartesianCoordinate coord = new CartesianCoordinate(Double.POSITIVE_INFINITY, 0, 0);
+	}
 
 }

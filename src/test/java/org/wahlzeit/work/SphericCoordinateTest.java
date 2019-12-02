@@ -42,5 +42,20 @@ public class SphericCoordinateTest {
 		assertTrue(sc1.getCentralAngle(sc2) == 0);
 		assertTrue(sc1.getCentralAngle(sc3) != 0);
 	}
+	
+	@Test(expected = IllegalStateException.class)
+	public void testConstructorWithNaN() {
+		SphericCoordinate coord = new SphericCoordinate(Double.NaN, 0, 0);
+	}
+	
+	@Test(expected = IllegalStateException.class)
+	public void testConstructorWithInfinite() {
+		SphericCoordinate coord = new SphericCoordinate(Double.POSITIVE_INFINITY, 0, 0);
+	}
+	
+	@Test(expected = IllegalStateException.class)
+	public void testConstructorWithNegativeRadius() {
+		SphericCoordinate coord = new SphericCoordinate(-1, 0, 0);
+	}
 
 }
