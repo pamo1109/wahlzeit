@@ -26,7 +26,7 @@ public abstract class AbstractCoordinate implements Coordinate {
 	 * non-abstract methods
 	 */
 	@Override
-	public double getCartesianDistance(Coordinate other) {
+	public double getCartesianDistance(Coordinate other) throws NullPointerException, IllegalStateException {
 		assertCoordinateIsDefined(other);
 		CartesianCoordinate otherAsCartesian = other.asCartesianCoordinates();
 		double result = this.doComputeCartesianDistance(otherAsCartesian);
@@ -35,7 +35,7 @@ public abstract class AbstractCoordinate implements Coordinate {
 	}
 
 	@Override
-	public double getCentralAngle(Coordinate other) {
+	public double getCentralAngle(Coordinate other) throws NullPointerException, IllegalStateException {
 		assertCoordinateIsDefined(other);
 		SphericCoordinate otherAsSpheric = other.asSphericCoordinate();
 		double result = this.doComputeCentralAngle(otherAsSpheric);
@@ -44,11 +44,11 @@ public abstract class AbstractCoordinate implements Coordinate {
 	}
 	
 	protected void assertGreaterZero(double value) throws IllegalStateException {
-		if (value < 0) throw new IllegalStateException();
+		if (value < 0) throw new IllegalStateException("the given value should not be less than zero!");
 	}
 	
 	protected void assertCoordinateIsDefined(Coordinate coord) throws NullPointerException {
-		if (coord == null) throw new NullPointerException();
+		if (coord == null) throw new NullPointerException("given variable is not defined!");
 	}
 	
 	/*

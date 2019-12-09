@@ -16,7 +16,7 @@ public class SphericCoordinate extends AbstractCoordinate {
 	/**
 	 * 
 	 */
-	public SphericCoordinate(double rad, double theta, double phi) {
+	public SphericCoordinate(double rad, double theta, double phi) throws IllegalStateException {
 		super();
 		this.radius = rad;
 		this.theta = theta;
@@ -25,19 +25,19 @@ public class SphericCoordinate extends AbstractCoordinate {
 	}
 
 	@Override
-	public CartesianCoordinate asCartesianCoordinates() {
+	public CartesianCoordinate asCartesianCoordinates() throws IllegalStateException {
 		assertCoordinatesAreValid();
 		return this.doTransformToCartesianCoordinate();
 	}
 
 	@Override
-	public SphericCoordinate asSphericCoordinate() {
+	public SphericCoordinate asSphericCoordinate() throws IllegalStateException {
 		assertCoordinatesAreValid();
 		return this;
 	}
 
 	@Override
-	public boolean isEqual(Coordinate other) {
+	public boolean isEqual(Coordinate other) throws IllegalStateException {
 		assertCoordinatesAreValid();
 		if	(this == other) return true;
 		
@@ -62,6 +62,6 @@ public class SphericCoordinate extends AbstractCoordinate {
 	 */
 	private void assertCoordinatesAreValid() throws IllegalStateException {
 		if (!Double.isFinite(this.radius) || !Double.isFinite(this.theta) || !Double.isFinite(this.phi) || this.radius < 0.0) 
-			throw new IllegalStateException();
+			throw new IllegalStateException("class invariant not fullfilled! Some of the coordinates variables are not valid.");
 	}
 }

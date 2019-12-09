@@ -6,7 +6,7 @@ public class CartesianCoordinate extends AbstractCoordinate {
 	double y;
 	double z;
 	
-	public CartesianCoordinate(double x, double y, double z) {
+	public CartesianCoordinate(double x, double y, double z) throws IllegalStateException {
 		super();
 		this.x = x;
 		this.y = y;
@@ -15,19 +15,19 @@ public class CartesianCoordinate extends AbstractCoordinate {
 	}
 
 	@Override
-	public CartesianCoordinate asCartesianCoordinates() {
+	public CartesianCoordinate asCartesianCoordinates() throws IllegalStateException {
 		assertCoordinatesAreValid();
 		return this;
 	}
 
 	@Override
-	public SphericCoordinate asSphericCoordinate() {
+	public SphericCoordinate asSphericCoordinate() throws IllegalStateException {
 		assertCoordinatesAreValid();
 		return this.doTransformToSphericCoordinate();
 	}
 
 	@Override
-	public boolean isEqual(Coordinate other) {
+	public boolean isEqual(Coordinate other) throws IllegalStateException {
 		assertCoordinatesAreValid();
 		if	(this == other) return true;
 		
@@ -53,6 +53,6 @@ public class CartesianCoordinate extends AbstractCoordinate {
 	 */
 	private void assertCoordinatesAreValid() throws IllegalStateException {
 		if (!Double.isFinite(this.x) || !Double.isFinite(this.y) || !Double.isFinite(this.z)) 
-			throw new IllegalStateException();
+			throw new IllegalStateException("class invariant not fullfilled! Some of the coordinates variables are not valid.");
 	}
 }

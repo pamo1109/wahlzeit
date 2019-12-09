@@ -41,7 +41,7 @@ public class MountainPhotoFactory extends PhotoFactory {
 	/**
 	 * Method to set the singleton instance of PhotoFactory.
 	 */
-	protected static synchronized void setInstance(MountainPhotoFactory mPhotoFactory) {
+	protected static synchronized void setInstance(MountainPhotoFactory mPhotoFactory) throws IllegalStateException {
 		if (instance != null) {
 			throw new IllegalStateException("attempt to initalize MountainPhotoFactory twice");
 		}
