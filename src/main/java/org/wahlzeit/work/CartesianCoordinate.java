@@ -2,16 +2,20 @@ package org.wahlzeit.work;
 
 public class CartesianCoordinate extends AbstractCoordinate {
 
-	double x;
-	double y;
-	double z;
+	final double x;
+	final double y;
+	final double z;
 	
-	public CartesianCoordinate(double x, double y, double z) throws IllegalStateException {
+	private CartesianCoordinate(double x, double y, double z) throws IllegalStateException {
 		super();
 		this.x = x;
 		this.y = y;
 		this.z = z;
 		assertCoordinatesAreValid();
+	}
+	
+	public static CartesianCoordinate newInstance(double x, double y, double z) {
+		return new CartesianCoordinate(x, y, z);
 	}
 
 	@Override
@@ -38,6 +42,22 @@ public class CartesianCoordinate extends AbstractCoordinate {
 	}
 	
 	/*
+	 * setters
+	 */
+	
+	public CartesianCoordinate setX(double value) {
+		return newInstance(value, this.y, this.z);
+	}
+	
+	public CartesianCoordinate setY(double value) {
+		return newInstance(this.x, value, this.z);
+	}
+	
+	public CartesianCoordinate setZ(double value) {
+		return newInstance(this.x, this.y, value);
+	}
+	
+	/*
 	 * primitives
 	 */
 	private SphericCoordinate doTransformToSphericCoordinate() {
@@ -45,7 +65,7 @@ public class CartesianCoordinate extends AbstractCoordinate {
 		double theta = Math.acos(z / rad);
 		double phi = Math.atan2(y, x);
 		
-		return new SphericCoordinate(rad, theta, phi);
+		return SphericCoordinate.newInstance(rad, theta, phi);
 	}
 	
 	/*

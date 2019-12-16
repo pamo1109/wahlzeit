@@ -15,8 +15,8 @@ public class CartesianCoordinateTest {
 
 	@Test
 	public void testEqualityCheck() {
-		CartesianCoordinate testObject1 = new CartesianCoordinate(1, 2, 3);
-		CartesianCoordinate testObject2 = new CartesianCoordinate(1, 2, 3);
+		CartesianCoordinate testObject1 = CartesianCoordinate.newInstance(1, 2, 3);
+		CartesianCoordinate testObject2 = CartesianCoordinate.newInstance(1, 2, 3);
 		
 		SphericCoordinate asSpheric = testObject2.asSphericCoordinate();
 		
@@ -27,9 +27,9 @@ public class CartesianCoordinateTest {
 	
 	@Test
 	public void testCartesianDistance() {
-		CartesianCoordinate testObject1 = new CartesianCoordinate(0, 0, 0);
-		CartesianCoordinate testObject2 = new CartesianCoordinate(0, 0, 0);
-		CartesianCoordinate testObject3 = new CartesianCoordinate(0, 0, 1);
+		CartesianCoordinate testObject1 = CartesianCoordinate.newInstance(0, 0, 0);
+		CartesianCoordinate testObject2 = CartesianCoordinate.newInstance(0, 0, 0);
+		CartesianCoordinate testObject3 = CartesianCoordinate.newInstance(0, 0, 1);
 		
 		assertTrue(testObject1.getCartesianDistance(testObject2) == 0.0);
 		assertTrue(testObject1.getCartesianDistance(testObject3) == 1.0);
@@ -37,9 +37,9 @@ public class CartesianCoordinateTest {
 	
 	@Test
 	public void testCentralAngle() {
-		CartesianCoordinate testObject1 = new CartesianCoordinate(1, 2, 3);
-		CartesianCoordinate testObject2 = new CartesianCoordinate(1, 2, 3);
-		CartesianCoordinate testObject3 = new CartesianCoordinate(1, 0, 1);
+		CartesianCoordinate testObject1 = CartesianCoordinate.newInstance(1, 2, 3);
+		CartesianCoordinate testObject2 = CartesianCoordinate.newInstance(1, 2, 3);
+		CartesianCoordinate testObject3 = CartesianCoordinate.newInstance(1, 0, 1);
 		
 		assertTrue(testObject1.getCentralAngle(testObject2) == 0);
 		assertTrue(testObject1.getCentralAngle(testObject3) != 0);
@@ -47,12 +47,12 @@ public class CartesianCoordinateTest {
 	
 	@Test(expected = IllegalStateException.class)
 	public void testConstructorWithNaN() {
-		CartesianCoordinate coord = new CartesianCoordinate(Double.NaN, 0, 0);
+		CartesianCoordinate coord = CartesianCoordinate.newInstance(Double.NaN, 0, 0);
 	}
 	
 	@Test(expected = IllegalStateException.class)
 	public void testConstructorWithInfinite() {
-		CartesianCoordinate coord = new CartesianCoordinate(Double.POSITIVE_INFINITY, 0, 0);
+		CartesianCoordinate coord = CartesianCoordinate.newInstance(Double.POSITIVE_INFINITY, 0, 0);
 	}
 
 }

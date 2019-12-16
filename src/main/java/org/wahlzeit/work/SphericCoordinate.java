@@ -9,19 +9,23 @@ package org.wahlzeit.work;
  */
 public class SphericCoordinate extends AbstractCoordinate {
 
-	double phi;
-	double theta;
-	double radius;
+	final double phi;
+	final double theta;
+	final double radius;
 	
 	/**
 	 * 
 	 */
-	public SphericCoordinate(double rad, double theta, double phi) throws IllegalStateException {
+	private SphericCoordinate(double rad, double theta, double phi) throws IllegalStateException {
 		super();
 		this.radius = rad;
 		this.theta = theta;
 		this.phi = phi;
 		assertCoordinatesAreValid();
+	}
+	
+	public static SphericCoordinate newInstance(double rad, double theta, double phi) {
+		return new SphericCoordinate(rad, theta, phi);
 	}
 
 	@Override
@@ -47,6 +51,22 @@ public class SphericCoordinate extends AbstractCoordinate {
 	}
 	
 	/*
+	 * setters
+	 */
+	
+	public SphericCoordinate setRad(double value) {
+		return newInstance(value, this.theta, this.phi);
+	}
+	
+	public SphericCoordinate setTheta(double value) {
+		return newInstance(this.radius, value, this.phi);
+	}
+	
+	public SphericCoordinate setPhi(double value) {
+		return newInstance(this.radius, this.theta, value);
+	}
+	
+	/*
 	 * primitives
 	 */
 	private CartesianCoordinate doTransformToCartesianCoordinate() {
@@ -54,7 +74,7 @@ public class SphericCoordinate extends AbstractCoordinate {
 		double y = radius * Math.sin(theta) * Math.sin(phi);
 		double z = radius * Math.cos(theta);
 		
-		return new CartesianCoordinate(x, y, z);
+		return CartesianCoordinate.newInstance(x, y, z);
 	}
 	
 	/*
