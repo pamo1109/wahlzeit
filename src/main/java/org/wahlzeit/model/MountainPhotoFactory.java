@@ -5,12 +5,17 @@ package org.wahlzeit.model;
 
 import java.util.logging.Logger;
 
+import org.wahlzeit.annotations.PatternInstance;
 import org.wahlzeit.services.LogBuilder;
 
 /**
  * @author patrickmoritz
  *
  */
+@PatternInstance(
+		patternName = "Abstract Factory",
+		participants = {"AbstractFactory", "ConcreteFactory"}
+)
 public class MountainPhotoFactory extends PhotoFactory {
 
 	private static final Logger log = Logger.getLogger(MountainPhotoFactory.class.getName());

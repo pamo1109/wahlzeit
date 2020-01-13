@@ -1,5 +1,11 @@
 package org.wahlzeit.work;
 
+import org.wahlzeit.annotations.PatternInstance;
+
+@PatternInstance(
+		patternName = "Template Method",
+		participants = {"Leaf", "ConcreteClass"}
+)
 public class CartesianCoordinate extends AbstractCoordinate {
 
 	final double x;

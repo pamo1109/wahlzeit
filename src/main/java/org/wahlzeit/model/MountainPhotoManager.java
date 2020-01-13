@@ -5,10 +5,16 @@ package org.wahlzeit.model;
 
 import java.util.logging.Logger;
 
+import org.wahlzeit.annotations.PatternInstance;
+
 /**
  * @author patrickmoritz
  *
  */
+@PatternInstance(
+		patternName = "Singleton",
+		participants = {"Leaf", "ConcreteProduct"}
+)
 public class MountainPhotoManager extends PhotoManager {
 
 	/**

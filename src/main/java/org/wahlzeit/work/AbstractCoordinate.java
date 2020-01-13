@@ -3,10 +3,16 @@
  */
 package org.wahlzeit.work;
 
+import org.wahlzeit.annotations.PatternInstance;
+
 /**
  * @author patrickmoritz
  *
  */
+@PatternInstance(
+		patternName = "Template Method",
+		participants = {"Abstract Class"}
+)
 public abstract class AbstractCoordinate implements Coordinate {
 	
 	protected final double EPSILON = 0.0001;

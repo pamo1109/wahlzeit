@@ -3,10 +3,16 @@
  */
 package org.wahlzeit.work;
 
+import org.wahlzeit.annotations.PatternInstance;
+
 /**
  * @author patrickmoritz
  *
  */
+@PatternInstance(
+		patternName = "Template Method",
+		participants = {"Leaf", "ConcreteClass"}
+)
 public class SphericCoordinate extends AbstractCoordinate {
 
 	final double phi;
