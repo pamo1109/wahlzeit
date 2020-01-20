@@ -1,11 +1,13 @@
 /**
  * 
  */
-package org.wahlzeit.model;
+package org.wahlzeit.work;
 
 import java.util.logging.Logger;
 
 import org.wahlzeit.annotations.PatternInstance;
+import org.wahlzeit.model.PhotoFactory;
+import org.wahlzeit.model.PhotoId;
 import org.wahlzeit.services.LogBuilder;
 
 /**
@@ -34,10 +36,10 @@ public class MountainPhotoFactory extends PhotoFactory {
 	/**
 	 * Public singleton access method.
 	 */
-	public static synchronized PhotoFactory getInstance() {
+	public static synchronized MountainPhotoFactory getInstance() {
 		if (instance == null) {
 			log.config(LogBuilder.createSystemMessage().addAction("setting generic MountainPhotoFactory").toString());
-			setInstance(new PhotoFactory());
+			setInstance(new MountainPhotoFactory());
 		}
 
 		return instance;
@@ -64,8 +66,8 @@ public class MountainPhotoFactory extends PhotoFactory {
 	/**
 	 * Creates a new photo with the specified id
 	 */
-	public MountainPhoto createPhoto(PhotoId id) {
-		return new MountainPhoto(id);
+	public MountainPhoto createPhoto(PhotoId id, String type) {
+		return new MountainPhoto(id, type);
 	}
 
 }
